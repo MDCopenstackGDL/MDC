@@ -1,0 +1,27 @@
+{
+  "name": "MDC",
+  "version": "0.1.0",
+  "description": "MDC app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Fernando de la Cruz Soto <fdelacruzsoto@gmail.com>",
+  "contributors": [{
+    "name": "",
+    "email": ""
+  }],
+  "license": " ",
+  "dependencies": {
+    "MD5": "~1.2.1",
+    "body-parser": "~1.12.0",
+    "cors": "^2.7.1",
+    "express": "~4.12.2",
+    "mysql": "~2.5.5",
+    "morgan": "latest"
+  },
+  "repository" :{ 
+    "type" : "git",
+    "url" : "https://github.com/MDCopenstackGDL/MDC"
+  }
+}
