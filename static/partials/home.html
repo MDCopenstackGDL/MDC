@@ -1,0 +1,31 @@
+<form class="form form--pad-none" ng-controller="NavigationCtrl">
+
+	<br/><br/>
+	<center><label for="messageHome">{{messageHome}}</label></center>
+	<br/>
+
+  <nav class="nav nav-pills nav-stacked menu">
+    <button type="button" class="homeButton" ng-click="changeView('login')">
+      <table>
+        <tbody>
+          <tr>
+            <td><span class="fa fa-sign-in"></span></td>
+            <td><span>Log in</span></td>
+            <td><span class="fa fa-angle-right"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </button>
+    <button type="button" class="homeButton" ng-click="changeView('register')">
+      <table >
+        <tbody>
+          <tr>
+            <td><span class="fa fa-user-plus"></span></td>
+            <td><span>Register</span></td>
+            <td><span class="fa fa-angle-right"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </button>
+  </nav>
+</form>
