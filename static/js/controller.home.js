@@ -78,6 +78,11 @@ angular.module('MDC')
       return ret;
     };
   
+    $scope.login = function() {
+      var url = "/login/";
+      $location.path(url);
+    };
+
     $scope.signUp = function() {
       var url = "/signup/";
       $location.path(url);

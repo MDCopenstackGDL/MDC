@@ -26,6 +26,10 @@ app.config(['$routeProvider', '$httpProvider', '$locationProvider', '$mdThemingP
       templateUrl: 'partials/home.html',
       controller: 'HomeCtrl'
     }).
+    when('/login', {
+      templateUrl: 'partials/login.html',
+      controller: 'LoginCtrl'
+    }).
     when('/signup', {
       templateUrl: 'partials/signup.html',
       controller: 'SignUpCtrl'
