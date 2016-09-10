@@ -1,31 +1,24 @@
-<form class="form form--pad-none" ng-controller="NavigationCtrl">
-
-	<br/><br/>
-	<center><label for="messageHome">{{messageHome}}</label></center>
-	<br/>
-
-  <nav class="nav nav-pills nav-stacked menu">
-    <button type="button" class="homeButton" ng-click="changeView('login')">
-      <table>
-        <tbody>
-          <tr>
-            <td><span class="fa fa-sign-in"></span></td>
-            <td><span>Log in</span></td>
-            <td><span class="fa fa-angle-right"></span></td>
-          </tr>
-        </tbody>
-      </table>
-    </button>
-    <button type="button" class="homeButton" ng-click="changeView('register')">
-      <table >
-        <tbody>
-          <tr>
-            <td><span class="fa fa-user-plus"></span></td>
-            <td><span>Register</span></td>
-            <td><span class="fa fa-angle-right"></span></td>
-          </tr>
-        </tbody>
-      </table>
-    </button>
-  </nav>
-</form>
+<section>
+  <md-card>
+    <md-card-title>
+      <section>
+        <md-card-actions layout="row">
+          <md-button md-no-ink="" class="md-primary button-wide" ng-click="changeView('login')">
+            Consultorio
+          </md-button>
+          <md-button md-no-ink="" class="md-primary button-wide" ng-click="changeView('register')">
+            Farmacia
+          </md-button>
+        </md-card-actions>
+      </section>
+    </md-card-title>
+    <md-divider></md-divider>
+    <md-card-content layout="row" layout-align="space-between">
+      <div id="map_canvas" >
+        <ui-gmap-google-map center="map.center" zoom="map.zoom">
+          <ui-gmap-marker coords="map.marker.coords" idkey="map.marker.id" options="map.marker.options"></ui-gmap-marker>
+        </ui-gmap-google-map>
+       </div>
+    </md-card-content>
+  </md-card>
+</section>

@@ -1,4 +1,4 @@
-angular.module('GetARide')
+angular.module('MDC')
 
 .constant('AUTH_EVENTS', {
   notAuthenticated: 'auth-not-authenticated',
