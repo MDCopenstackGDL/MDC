@@ -11,8 +11,9 @@
     <md-divider></md-divider>
     <md-card-content layout="row" layout-align="space-between">
       <div id="map_canvas" >
-        <ui-gmap-google-map center="map.center" zoom="map.zoom">
-          <ui-gmap-marker coords="map.marker.coords" idkey="map.marker.id" options="map.marker.options"></ui-gmap-marker>
+        <ui-gmap-google-map center="map.center" zoom="map.zoom" bounds="map.bounds">
+          <ui-gmap-markers models="markers"coords="'self'" icon="'icon'">
+          </ui-gmap-markers>
         </ui-gmap-google-map>
        </div>
     </md-card-content>

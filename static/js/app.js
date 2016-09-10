@@ -11,6 +11,14 @@ app.config(function ($httpProvider) {
   delete $httpProvider.defaults.headers.common['X-Requested-With'];
 });
 
+app.config(function(uiGmapGoogleMapApiProvider) {
+    uiGmapGoogleMapApiProvider.configure({
+        key: 'AIzaSyA1j5oGp_wpeu8mbR2lqhVYPE7hBFWM5H0',
+        v: '3', //defaults to latest 3.X anyhow
+        libraries: 'weather,geometry,visualization'
+    });
+})
+
 app.config(['$routeProvider', '$httpProvider', '$locationProvider', '$mdThemingProvider', function($routeProvider, $httpProvider, $locationProvider, $mdThemingProvider) {
 
   $routeProvider.
