@@ -1,12 +1,12 @@
 var config = require('./config');
-var express = require("express");
+var express = require('express');
 var cors = require('cors');
-var mysql = require("mysql");
-var bodyParser = require("body-parser");
+var mysql = require('mysql');
+var bodyParser = require('body-parser');
 var md5 = require('MD5');
 var app = express();
-var morgan = require("morgan");
-var menu = require("./services/menu.js");
+var morgan = require('morgan');
+var consultorio = require('./services/consultorio.js');
 var listen_port = process.env.PORT || 3000;
 var dev = process.env.DEV;
 
@@ -23,6 +23,7 @@ REST.prototype.connectMysql = function() {
     password: config.db.password,
     database: config.db.database
   });
+  
   self.configureExpress(pool);
 }
 REST.prototype.configureExpress = function(pool) {
@@ -45,7 +46,7 @@ REST.prototype.configureExpress = function(pool) {
   app.use('/api', router);
   app.use(morgan("dev"));
   app.use(express.static("./static"));
-  var menu_router = new menu(router, pool, md5);
+  var consultorio_router = new consultorio(router, pool, md5);
   self.startServer();
 }
 REST.prototype.startServer = function() {
