@@ -13,10 +13,54 @@ REST_ROUTER.prototype.handleRoutes = function(router, pool, md5) {
     var northeastlng = req.params.nelng;
     var southwestlat = req.params.swlat;
     var southwestlng = req.params.swlng;
-    res.json({
-      "Error": false,
-      "Message": "OK"      
+    var query = 'SELECT loc.Latitude, loc.Longitude, us.Name FROM ' +
+                '  Location loc ' +
+                'JOIN ' +
+                '  User us ' +
+                'ON ' +
+                '  us.idUser = loc.idUser ' +
+                'WHERE ' +
+                '  (loc.Latitude <= ? ' + //north
+                'AND ' +
+                '  loc.Latitude >= ?) ' + //south
+                'AND ' +
+                '  (loc.Longitude <= ? ' + //north
+                'AND ' +
+                '  loc.Longitude >= ?)'; //south
+    
+    var coords = [northeastlat, southwestlat, northeastlng, southwestlng];
+    var query = mysql.format(query, coords);
+    
+    pool.getConnection(function(err, connection){
+      if(err) {
+        console.error(err);
+        res.statusCode = 500;
+        res.json({
+          "Error": true,
+          "Message": "DB connection error. " + err
+        });
+        return;
+      }
+      connection.query(query, function(err, result){
+        connection.release();
+        if(err) {
+          console.error(err);
+          res.statusCode = 500;
+          res.json({
+            "Error": true,
+            "Message": "DB connection error. " + err
+          });
+          return
+        }
+        console.log("Query execution successful.");
+        res.json({
+          "Error": false,
+          "Message": "OK",
+          "Results": result
+        });
+      })
     });
+                
   });
   
 }
