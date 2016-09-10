@@ -51,8 +51,11 @@ angular.module('MDC')
       });
     } else {
       // Browser doesn't support Geolocation
-    }
+    };
   
-  
+    $scope.signUp = function() {
+      var url = "/signup/";
+      $location.path(url);
+    };
   
   }]);
