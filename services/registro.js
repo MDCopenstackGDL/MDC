@@ -6,30 +6,33 @@ function REST_ROUTER(router, pool, md5) {
 }
 
 REST_ROUTER.prototype.handleRoutes = function(router, pool, md5) {
-  
-  router.get('/getConsultorios/:nelat/:nelng/:swlat/:swlng', function(req, res) {
-    console.log('[SERVICE] - Get consultorios. ');
-    var northeastlat = req.params.nelat;
-    var northeastlng = req.params.nelng;
-    var southwestlat = req.params.swlat;
-    var southwestlng = req.params.swlng;
-    var query = 'SELECT loc.Latitude, loc.Longitude, us.Name FROM ' +
-                '  Location loc ' +
-                'JOIN ' +
-                '  User us ' +
-                'ON ' +
-                '  us.idUser = loc.idUser ' +
-                'WHERE ' +
-                '  (loc.Latitude <= ? ' + //north
-                'AND ' +
-                '  loc.Latitude >= ?) ' + //south
-                'AND ' +
-                '  (loc.Longitude <= ? ' + //north
-                'AND ' +
-                '  loc.Longitude >= ?)'; //south
+
+  router.POST('/registro', function(req, res) {
+    console.log('[SERVICE] - POST Users.');
+
+    var NAME = req.body.name;
+    var EMAIL = req.body.email;
+    var PASS = req.body.password;
+    var BIRTHDATE = req.body.birthday;
+    var CREATEDATE = Now();
+    var GENDER = req.body.gender;
+    var STATUS = 1;
+    var FACEBOOKID = 1;
+
+    var query = 'INSERT INTO mdc.User ' +
+                ' (Name, ' +
+                'Email, ' +
+                'Password, ' +
+                'Birthdate, ' +
+                'CreateDate, ' +
+                'Gender, ' +
+                'Status, ' + //north
+                'FacebookID)' +
+                'VALUES ' + //south
+                '(?,?,?,?,?,?,?,?)'; //south
     
-    var coords = [northeastlat, southwestlat, northeastlng, southwestlng];
-    var query = mysql.format(query, coords);
+    var params = [NAME, EMAIL, PASS, BIRTHDATE,CREATEDATE,GENDER,STATUS,FACEBOOKID];
+    var query = mysql.format(query, params);
     
     pool.getConnection(function(err, connection){
       if(err) {
