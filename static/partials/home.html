@@ -1,17 +1,13 @@
 <section>
   <md-card>
-    <md-card-title>
-      <section>
-        <md-card-actions layout="row">
-          <md-button md-no-ink="" class="md-primary button-wide" ng-click="changeView('login')">
+      <div class="bottom-sheet-demo inset" layout="row" layout-sm="column" layout-align="center" >
+        <md-button flex="50" class="md-primary md-raised" ng-click="changeView('login')">
             Consultorio
-          </md-button>
-          <md-button md-no-ink="" class="md-primary button-wide" ng-click="changeView('register')">
+        </md-button>
+        <md-button flex="50" class="md-primary md-raised" ng-click="changeView('register')">
             Farmacia
-          </md-button>
-        </md-card-actions>
-      </section>
-    </md-card-title>
+        </md-button>
+      </div>
     <md-divider></md-divider>
     <md-card-content layout="row" layout-align="space-between">
       <div id="map_canvas" >
@@ -22,4 +18,8 @@
        </div>
     </md-card-content>
   </md-card>
+  <div class="bottom-sheet-demo inset" layout="column" layout-sm="column" layout-align="center" >
+     <md-button flex="100" class="md-raised md-primary" >Iniciar Sesión</md-button>
+     <md-button md-no-ink class="md-primary" ng-click="signUp()">Registrarse</md-button>
+  </div>
 </section>

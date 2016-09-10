@@ -30,3 +30,7 @@ html, body, #map_canvas {
 }
 
 .angular-google-map-container { height: 400px; }
+
+.material-icons {
+  color: #AAA;
+}
