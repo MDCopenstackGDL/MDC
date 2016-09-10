@@ -28,4 +28,8 @@ angular.module('MDC').controller('LoginCtrl', ['$rootScope', '$scope', '$locatio
     }); //closing then
   };
   $scope.token = $localStorage.token;
+  $scope.signUp = function() {
+      var url = "/signup/";
+      $location.path(url);
+    };
 }]);
