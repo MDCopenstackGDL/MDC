@@ -55,7 +55,7 @@ angular.module('MDC')
       });
     } else {
       // Browser doesn't support Geolocation
-    } 
+    }
     
     var createRandomMarker = function(i, bounds, idKey) {
       var lat_min = bounds.southwest.latitude,
@@ -78,5 +78,9 @@ angular.module('MDC')
       return ret;
     };
   
+    $scope.signUp = function() {
+      var url = "/signup/";
+      $location.path(url);
+    };
   
   }]);

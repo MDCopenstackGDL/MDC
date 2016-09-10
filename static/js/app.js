@@ -26,10 +26,19 @@ app.config(['$routeProvider', '$httpProvider', '$locationProvider', '$mdThemingP
       templateUrl: 'partials/home.html',
       controller: 'HomeCtrl'
     }).
+    when('/signup', {
+      templateUrl: 'partials/signup.html',
+      controller: 'SignUpCtrl'
+    }).
     otherwise({
       redirectTo: '/'
     });
 	
+  $mdThemingProvider.theme('default')
+    .primaryPalette('blue-grey')
+    .accentPalette('orange');
+
+  /*
   $mdThemingProvider.definePalette('HPE', {
     '50': '333333', //HPE Black
     '100': 'FFFFFF', // HPE White
@@ -61,5 +70,6 @@ app.config(['$routeProvider', '$httpProvider', '$locationProvider', '$mdThemingP
       'hue-3': 'A100' // use shade A100 for the <code>md-hue-3</code> class
 
     });
-    
+  */
+
 }]);
