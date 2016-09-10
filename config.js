@@ -1,9 +1,9 @@
 module.exports = {
 	db : {
-		host     : 'TBD',
-    user     : 'TBD',
-    password : 'TBD',
-    database : 'TBD',
-		portdb   : 'TBD'
+		host     : '172.16.11.117',
+    user     : 'mdcuser',
+    password : 'Server@2106',
+    database : 'mdc',
+		portdb   : '3306'
 	}
 };
