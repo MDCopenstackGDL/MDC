@@ -18,7 +18,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, pool, md5) {
     var GENDER = req.body.gender;
     var STATUS = 1;
     var FACEBOOKID = 1;
-
+    console.log(NAME);
     var query = 'INSERT INTO mdc.User ' +
                 ' (Name, ' +
                 'Email, ' +
@@ -26,14 +26,14 @@ REST_ROUTER.prototype.handleRoutes = function(router, pool, md5) {
                 'Birthdate, ' +
                 'CreateDate, ' +
                 'Gender, ' +
-                'Status, ' + //north
+                'Status, ' + 
                 'FacebookID)' +
-                'VALUES ' + //south
-                '(?,?,?,?,?,?,?,?)'; //south
+                'VALUES ' + 
+                '(?,?,?,?,?,?,?,?)'; 
     
-    var params = [NAME, EMAIL, PASS, BIRTHDATE,CREATEDATE,GENDER,STATUS,FACEBOOKID];
+    var params = [NAME, EMAIL, PASS, BIRTHDATE, CREATEDATE, GENDER, STATUS, FACEBOOKID];
     var query = mysql.format(query, params);
-    
+    console.log(query);
     pool.getConnection(function(err, connection){
       if(err) {
         console.error(err);

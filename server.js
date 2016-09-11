@@ -48,7 +48,11 @@ REST.prototype.configureExpress = function(pool) {
   app.use(morgan("dev"));
   app.use(express.static("./static"));
   var consultorio_router = new consultorio(router, pool, md5);
+<<<<<<< HEAD
   var registro_router = new registro(router, pool, md5);
+=======
+  var registro_router = new registro(router, pool, md5)
+>>>>>>> ad0cf5b41bb2f447ae919e98d2dfcb49a6c13011
   self.startServer();
 }
 REST.prototype.startServer = function() {
