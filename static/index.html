@@ -34,11 +34,11 @@
 
       <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="left">
         <md-toolbar class="md-theme-light">
-          <h1 class="md-toolbar-tools">Welcome!</h1>
+          <h1 class="md-toolbar-tools">Bienvenido!</h1>
         </md-toolbar>
         <md-content layout-padding>
           <md-list ng-cloak>
-            <md-subheader class="md-no-sticky">{{userName}}</md-subheader>
+            <md-subheader class="md-no-sticky">Hola {{userName}}!</md-subheader>
             <md-list-item>
               <p><md-icon md-font-set="material-icons"> account_circle </md-icon> Mi Perfil</p>
             </md-list-item>
@@ -46,7 +46,7 @@
               <p><md-icon md-font-set="material-icons"> local_hospital </md-icon> Historial Clínico </p>
             </md-list-item>
             <md-list-item>
-              <p><md-icon md-font-set="material-icons"> power_settings_new </md-icon> Cerrar Sesión </p>
+              <p ng-click="signOut()"><md-icon md-font-set="material-icons"> power_settings_new </md-icon> Cerrar Sesión </p>
             </md-list-item>
             <md-divider></md-divider>
           </md-list>

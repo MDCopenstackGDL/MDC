@@ -18,7 +18,7 @@
        </div>
     </md-card-content>
   </md-card>
-  <div class="bottom-sheet-demo inset" layout="column" layout-sm="column" layout-align="center" >
+  <div class="bottom-sheet-demo inset" layout="column" layout-sm="column" layout-align="center" ng-show="!isLoggedUser">
      <md-button flex="100" class="md-raised md-primary" ng-click="login()">Iniciar Sesión</md-button>
      <md-button md-no-ink class="md-primary" ng-click="signUp()">Registrarse</md-button>
   </div>

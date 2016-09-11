@@ -87,13 +87,19 @@ angular.module('MDC')
       var url = "/signup/";
       $location.path(url);
     };
+
+    $scope.signOut = function() {
+      $localStorage.token = null;
+      var url = "/home";
+      $location.path(url);
+    };
   
     // -----------------------------------------------
     // Logged User
     // -----------------------------------------------
 
-    $scope.isLoggedUser = true; //$localStorage.token != null && $localStorage.token != undefined;
-    $scope.userName = 'Logged User Name'; //$localStorage.userName; 
+    $scope.isLoggedUser = $localStorage.token != null && $localStorage.token != undefined;
+    $scope.userName = $localStorage.userName; 
 
     $scope.goHome = function(){
       var url = "/";

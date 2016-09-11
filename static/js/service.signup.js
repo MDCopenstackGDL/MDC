@@ -5,7 +5,11 @@ angular.module('MDC').factory('SignUpService', ['$http', '$localStorage', 'BASE_
     signUp: function(data) {
       //$httpProvider.defaults.headers.get = { 'My-Header' : 'value' }.
       console.log("SignUp Service call DB.")
-      return { error: false , errorMessage: '' };
+      return $http.post(BASE_URL.urlservices + '/registro', data).then(function(res) {
+        return res;
+      }, function(res) {
+        return res;
+      });
     }
   };
 }]);

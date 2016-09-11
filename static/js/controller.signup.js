@@ -1,28 +1,36 @@
 'use strict';
 /* Controllers */
 angular.module('MDC')
-  .controller('SignUpCtrl', ['$scope', '$location', '$localStorage', 'SignUpService', function($scope, $location, $localStorage, SignUpService) {
+  .controller('SignUpCtrl', ['$scope', '$location', '$localStorage', '$mdToast', 'SignUpService', function($scope, $location, $localStorage, $mdToast, SignUpService) {
     
     $scope.user = {
       name: '',
       email: '',
       password: '',
-      birthday: '',
+      birthday: null,
       gender: '',
       isDoctor: false,
       cedula: ''
     };
 
     $scope.signUp = function() {
+        
+      
       var data= SignUpService.signUp($scope.user).then(function(res) {
         //Validate Access
-        console.log("Llamando al service");
-        if (res.error) {
-          console.log("Mensaje: " + res.errorMessage);
+        if (res.data.Error) {
+          console.log("Error Message: " + res.data.Message);
+          $mdToast.show(
+            $mdToast.simple().textContent("Error Message: " + res.data.Message).position('top right')
+          );
         } else {
-          console.log("Mensaje: " + res.error);
+          console.log("User was saved.");
+          $mdToast.show(
+            $mdToast.simple().textContent("Registro Exitoso!").position('top right')
+          );
         }
       }); //closing then
+      
     };
 
 }]);
