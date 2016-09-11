@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('MDC')
-  .controller('HomeCtrl', ['$scope', '$location', '$localStorage', function($scope, $location, $localStorage) {	
+  .controller('HomeCtrl', ['$scope', '$location', '$localStorage', '$mdSidenav', function($scope, $location, $localStorage, $mdSidenav) {	
 	
     $scope.changeView = function(view){
       $location.path(view); 
@@ -88,4 +88,32 @@ angular.module('MDC')
       $location.path(url);
     };
   
+    // -----------------------------------------------
+    // Logged User
+    // -----------------------------------------------
+
+    $scope.isLoggedUser = true; //$localStorage.token != null && $localStorage.token != undefined;
+    $scope.userName = 'Logged User Name'; //$localStorage.userName; 
+
+    $scope.goHome = function(){
+      var url = "/";
+      $location.path(url);
+    };
+
+    $scope.toggleLeft = buildToggler('left');
+    $scope.isOpenLeft = function(){
+      return $mdSidenav('left').isOpen();
+    };
+
+    function buildToggler(navID) {
+      return function() {
+        // Component lookup should always be available since we are not using `ng-if`
+        $mdSidenav(navID)
+          .toggle()
+          .then(function () {
+            console.log("toggle " + navID + " is done");
+          });
+      }
+    }
+
   }]);

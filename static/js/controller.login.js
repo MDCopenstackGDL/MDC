@@ -15,16 +15,16 @@ angular.module('MDC').controller('LoginCtrl', ['$rootScope', '$scope', '$locatio
         $localStorage.messageHome = '';
         $localStorage.token = res.data.User[0].idUser;
         $scope.result = res;
-        $location.path("/menu");
-      } else if (res.data.Message == 'User not registered') {
+        $location.path("/");
+      } else if (res.data.Message == 'NOT REGISTERED') {
         alert('You are not registered on the system. Please sign up.');
-        $location.path("/register");
+        $location.path("/signup");
       } else {
         alert(res.data.Message);
       }
     }, function(res) {
       $localStorage.messageHome = 'Something went wrong, please try again. 2';
-      $location.path("/home");
+      $location.path("/");
     }); //closing then
   };
   $scope.token = $localStorage.token;
