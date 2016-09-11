@@ -17,20 +17,42 @@
   
   <div>
   
-    <header>
-      <md-toolbar md-scroll-shrink="" class="md-hue-1">
-        <div class="md-toolbar-tools">
-          <md-button class="md-icon-button" aria-label="Settings">
-            <i class="mdi mdi-menu"></i>
-          </md-button>
-          {{title}}
-          <span flex=""></span>
-          <md-button class="md-icon-button" aria-label="More">
-            <i class="mdi mdi-dots-vertical"></i>
-          </md-button>
-        </div>
-      </md-toolbar>
-    </header>
+    <div ng-controller='HomeCtrl'>
+      <header  ng-show="isLoggedUser">
+        <md-toolbar md-scroll-shrink="" class="md-hue-1">
+          <div class="md-toolbar-tools">
+            <md-button class="md-icon-button" aria-label="Settings" ng-click="toggleLeft()" ng-hide="isOpenLeft()">
+              <i class="mdi mdi-menu"></i>
+            </md-button>
+            <span ng-click="goHome()">MDC</span>
+            <!--<md-button class="md-icon-button" aria-label="More">
+              <i class="mdi mdi-dots-vertical"></i>
+            </md-button>-->
+          </div>
+        </md-toolbar>
+      </header>
+
+      <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="left">
+        <md-toolbar class="md-theme-light">
+          <h1 class="md-toolbar-tools">Welcome!</h1>
+        </md-toolbar>
+        <md-content layout-padding>
+          <md-list ng-cloak>
+            <md-subheader class="md-no-sticky">{{userName}}</md-subheader>
+            <md-list-item>
+              <p><md-icon md-font-set="material-icons"> account_circle </md-icon> Mi Perfil</p>
+            </md-list-item>
+            <md-list-item>
+              <p><md-icon md-font-set="material-icons"> local_hospital </md-icon> Historial Clínico </p>
+            </md-list-item>
+            <md-list-item>
+              <p><md-icon md-font-set="material-icons"> power_settings_new </md-icon> Cerrar Sesión </p>
+            </md-list-item>
+            <md-divider></md-divider>
+          </md-list>
+        </md-content>
+      </md-sidenav>
+    </div>
 
     <main>
       <div class="container" ng-view="">

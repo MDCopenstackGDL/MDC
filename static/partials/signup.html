@@ -26,6 +26,13 @@
       <input ng-model="user.password" type="password" ng-required="true">
     </md-input-container>
 
+    <md-input-container class="md-block">
+      <md-radio-group ng-model="user.gender">
+        <md-radio-button value="M"> Masculino </md-radio-button>
+        <md-radio-button value="F"> Femenino </md-radio-button>
+      </md-radio-group>
+    </md-input-container>
+
     <md-switch ng-model="user.isDoctor" aria-label="Switch 1">
       Soy Doctor
     </md-switch>
@@ -40,8 +47,6 @@
     </div>
 
     <!--<md-datepicker ng-model="user.birthday" md-placeholder="Fecha de Nacimiento"></md-datepicker>-->
-    <br />
-    <br />
     <div class="bottom-sheet-demo inset" layout="row" layout-sm="column" layout-align="center" >
         <md-button flex="100" class="md-raised md-primary" ng-click="signUp()">Registrarse</md-button>
     </div>

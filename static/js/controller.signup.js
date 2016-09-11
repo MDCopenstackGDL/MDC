@@ -8,6 +8,7 @@ angular.module('MDC')
       email: '',
       password: '',
       birthday: '',
+      gender: '',
       isDoctor: false,
       cedula: ''
     };
