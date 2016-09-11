@@ -115,7 +115,7 @@ angular.module('MDC')
           console.log("Mensaje: " + res.data.Message);
           if (res.data.Message == 'OK') {
             for(var x in res.data.Results){
-              markers.push(createMarker(res.data.Results[x],x,$scope.map.bounds));
+              markers.push(createMarker(res.data.Results[x],res.data.Results[x].idUser,$scope.map.bounds));
             }
           } 
         }, function(res){
@@ -126,7 +126,7 @@ angular.module('MDC')
           console.log("Mensaje: " + res.data.Message);
           if (res.data.Message == 'OK') {
             for(var x in res.data.Results){
-              markers.push(createMarker(res.data.Results[x],x,$scope.map.bounds));
+              markers.push(createMarker(res.data.Results[x],res.data.Results[x].idUser,$scope.map.bounds));
             }
           } 
         }, function(res){

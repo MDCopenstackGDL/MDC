@@ -31,7 +31,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, pool, md5) {
                 'AND ' +
                 '  (loc.Longitude <= ? ' + //north
                 'AND ' +
-                '  loc.Longitude >= ?) ' //south
+                '  loc.Longitude >= ?) ' +//south
                 'AND ' +
                 '  ru.idRoles = ?';
     
