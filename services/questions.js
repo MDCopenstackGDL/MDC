@@ -6,29 +6,22 @@ function REST_ROUTER(router, pool, md5) {
 }
 
 REST_ROUTER.prototype.handleRoutes = function(router, pool, md5) {
-  
-  router.post('/saveMedicalHistory/:nelat/:nelng/:swlat/:swlng', function(req, res) {
-    console.log('[SERVICE] - Save Medical History. ');
-    var answers = req.body.answers;
-    var comments = req.body.comments;
-    var query = 'INSERT INTO mdc.MedicalHistory ' +
-                '  Location loc ' +
-                'JOIN ' +
-                '  User us ' +
-                'ON ' +
-                '  us.idUser = loc.idUser ' +
-                'WHERE ' +
-                '  (loc.Latitude <= ? ' + //north
-                'AND ' +
-                '  loc.Latitude >= ?) ' + //south
-                'AND ' +
-                '  (loc.Longitude <= ? ' + //north
-                'AND ' +
-                '  loc.Longitude >= ?)'; //south
-    
-    var coords = [northeastlat, southwestlat, northeastlng, southwestlng];
-    var query = mysql.format(query, coords);
-    
+  router.get('/getHistorial', function(req, res) {
+    _session = req.session;
+    var query = " SELECT Q.idQuestion, Q.Question AS 'question', A.idAnswer, A.Answer AS 'answer' " +
+                " FROM Question AS Q " +
+                " LEFT JOIN ( " +
+                "   SELECT ANS.* " +
+                  " FROM Answer AS ANS " +
+                  " INNER JOIN MedicalHistory AS M " +
+                  " ON ANS.idMedicalHistory = M.idMedicalHistory " +
+                  " WHERE (M.idUser = ?) " +
+                " ) AS A " +
+                " ON Q.idQuestion = A.idQuestion " +
+                " ORDER BY Q.idQuestion";
+    var user = [_session.userEmail];
+    var query = mysql.format(query, user);
+
     pool.getConnection(function(err, connection){
       if(err) {
         console.error(err);
@@ -51,10 +44,12 @@ REST_ROUTER.prototype.handleRoutes = function(router, pool, md5) {
           return
         }
         console.log("Query execution successful.");
+        
         res.json({
           "Error": false,
           "Message": "OK",
-          "Results": result
+          "answers": result,
+          "comments": ""
         });
       })
     });
