@@ -43,7 +43,7 @@
               <p><md-icon md-font-set="material-icons"> account_circle </md-icon> Mi Perfil</p>
             </md-list-item>
             <md-list-item>
-              <p><md-icon md-font-set="material-icons"> local_hospital </md-icon> Historial Clínico </p>
+              <p ng-click="goHistory()"><md-icon md-font-set="material-icons"> local_hospital </md-icon> Historial Clínico </p>
             </md-list-item>
             <md-list-item>
               <p ng-click="signOut()"><md-icon md-font-set="material-icons"> power_settings_new </md-icon> Cerrar Sesión </p>
@@ -83,9 +83,11 @@
   <script src="/js/controller.home.js"></script>
   <script src="/js/controller.login.js"></script>
   <script src="/js/controller.signup.js"></script>
+  <script src="/js/controller.history.js"></script>
   <script src="/js/service.home.js"></script>
   <script src="/js/service.login.js"></script>
   <script src="/js/service.signup.js"></script>
+  <script src="/js/service.history.js"></script>
 
 </body>
 

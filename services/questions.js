@@ -6,7 +6,7 @@ function REST_ROUTER(router, pool, md5) {
 }
 
 REST_ROUTER.prototype.handleRoutes = function(router, pool, md5) {
-  router.get('/getHistorial', function(req, res) {
+  router.get('/getHistory', function(req, res) {
     _session = req.session;
     var query = " SELECT Q.idQuestion, Q.Question AS 'question', A.idAnswer, A.Answer AS 'answer' " +
                 " FROM Question AS Q " +
