@@ -7,6 +7,44 @@ function REST_ROUTER(router, pool, md5) {
 
 REST_ROUTER.prototype.handleRoutes = function(router, pool, md5) {
   
+  router.get('/getUser/:id', function(req,res) {
+    console.log('[SERVICE] - Get user. ');
+    var id = req.params.id;
+    var query = 'SELECT * FROM User WHERE idUser = ? ';
+    var userInfo = [id];
+    var query = mysql.format(query, userInfo);
+    
+    pool.getConnection(function(err, connection){
+      if(err) {
+        console.error(err);
+        res.statusCode = 500;
+        res.json({
+          "Error": true,
+          "Message": "DB connection error. " + err
+        });
+        return;
+      }
+      connection.query(query, function(err, result){
+        connection.release();
+        if(err) {
+          console.error(err);
+          res.statusCode = 500;
+          res.json({
+            "Error": true,
+            "Message": "DB connection error. " + err
+          });
+          return
+        }
+        console.log("Query execution successful.");
+        res.json({
+          "Error": false,
+          "Message": "OK",
+          "Results": result
+        });
+      })
+    });
+  });
+  
   router.get('/getFarmacias/:nelat/:nelng/:swlat/:swlng', function(req, res) {
     console.log('[SERVICE] - Get farmacias. ');
     var northeastlat = req.params.nelat;

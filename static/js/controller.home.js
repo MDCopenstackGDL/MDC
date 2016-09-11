@@ -3,8 +3,10 @@
 /* Controllers */
 
 angular.module('MDC')
-  .controller('HomeCtrl', ['$scope', '$location', '$localStorage', '$mdSidenav', 'MapsService', function($scope, $location, $localStorage, $mdSidenav, MapsService) {	
-	
+  .controller('HomeCtrl', ['$scope', '$location', '$localStorage', '$mdSidenav', '$mdDialog', 'MapsService', function($scope, $location, $localStorage, $mdSidenav, $mdDialog, MapsService) {	
+    
+    var pins = 'consultorios';
+    
     $scope.changeView = function(view){
       $location.path(view); 
     }
@@ -20,6 +22,14 @@ angular.module('MDC')
         zoom: 8,
         bounds: {}
       };
+      
+    $scope.reloadMap = function(type){
+      pins = type;
+      $scope.markers = [];
+      var markers = [];
+      markers.push(createUserMarker('u1', $scope.map.bounds));
+      populateMarkers(markers);
+    }
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
@@ -45,6 +55,40 @@ angular.module('MDC')
       // Browser doesn't support Geolocation
     }
     
+    $scope.onClick = function(marker, eventName, model) {
+      console.log("Clicked!" + marker.key);   
+      if(marker.key != 'u1'){
+        var title;
+        if(pins = 'consultorios'){
+          title = 'Consultorio';
+        } else {
+          title = 'Farmacia';
+        }
+        
+        var serviceData = { userId: marker.key};
+        
+        MapsService.userInfo(serviceData).then(function(res){
+          console.log("Mensaje: " + res.data.Message);
+          if (res.data.Message == 'OK') {
+            $mdDialog.show(
+              $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#map_canvas')))
+                .clickOutsideToClose(true)
+                .title(title)
+                .textContent( 'Nombre: ' + res.data.Results[0].Name + ', ' +
+                              'Correo: ' + res.data.Results[0].Email)
+                .ariaLabel('Informacion')
+                .ok('Entendido')
+                .targetEvent(eventName)
+            );
+          } 
+        }, function(res){
+                
+        });
+
+      }
+    };
+    
     $scope.markers = [];
     // Get the bounds from the map once it's loaded
     $scope.$watch(function() {
@@ -52,13 +96,21 @@ angular.module('MDC')
     }, function(nv, ov) {
       // Only need to regenerate once
       if (!ov.southwest && nv.southwest) {
-        var markers = [];
         // Marker for user
-        markers.push(createUserMarker(0, $scope.map.bounds));
-        var serviceData = {
-          northeast : $scope.map.bounds.northeast,
-          southwest : $scope.map.bounds.southwest
-        };
+        var markers = [];
+        markers.push(createUserMarker('u1', $scope.map.bounds));
+        populateMarkers(markers)
+        
+      }
+    }, true);
+    
+    
+    function populateMarkers(markers){
+      var serviceData = {
+        northeast : $scope.map.bounds.northeast,
+        southwest : $scope.map.bounds.southwest
+      };
+      if(pins == 'consultorios'){
         MapsService.consultorios(serviceData).then(function(res){
           console.log("Mensaje: " + res.data.Message);
           if (res.data.Message == 'OK') {
@@ -67,11 +119,22 @@ angular.module('MDC')
             }
           } 
         }, function(res){
-              
-        })
-        $scope.markers = markers;
+                
+        });
+      } else {
+        MapsService.farmacias(serviceData).then(function(res){
+          console.log("Mensaje: " + res.data.Message);
+          if (res.data.Message == 'OK') {
+            for(var x in res.data.Results){
+              markers.push(createMarker(res.data.Results[x],x,$scope.map.bounds));
+            }
+          } 
+        }, function(res){
+                
+        });
       }
-    }, true);
+      $scope.markers = markers;
+    }
     
     var createUserMarker = function(i, bounds, idKey) {
 
@@ -84,7 +147,9 @@ angular.module('MDC')
       var ret = {
         latitude: latitude,
         longitude: longitude,
-        title: 'm' + i
+        title: 'Tu estás aquí',
+        show: true,
+        icon: 'https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle_blue.png'
       };
       ret[idKey] = i;
       return ret;
@@ -98,10 +163,18 @@ angular.module('MDC')
 
       var latitude = position.Latitude;
       var longitude = position.Longitude;
+      var iconPath;
+      if(pins == 'consultorios'){
+        iconPath = 'img/consultorioPin.png';
+      } else {
+        iconPath = 'img/farmaciaPin.png';
+      }
       var ret = {
         latitude: latitude,
         longitude: longitude,
-        title: position.Name
+        title: position.Name,
+        show: true,
+        icon: iconPath
       };
       
       ret[idKey] = i;
