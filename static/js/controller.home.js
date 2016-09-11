@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('MDC')
-  .controller('HomeCtrl', ['$scope', '$location', '$localStorage', '$mdSidenav', function($scope, $location, $localStorage, $mdSidenav) {	
+  .controller('HomeCtrl', ['$scope', '$location', '$localStorage', '$mdSidenav', 'MapsService', function($scope, $location, $localStorage, $mdSidenav, MapsService) {	
 	
     $scope.changeView = function(view){
       $location.path(view); 
@@ -23,33 +23,21 @@ angular.module('MDC')
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
-        pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        
-        $scope.map = { 
-            center: { 
-                latitude: pos.lat, 
-                longitude: pos.lng 
-            },
-            zoom: 15,
-            bounds: {}
-        };
-        
-         $scope.markers = [];
-        // Get the bounds from the map once it's loaded
-        $scope.$watch(function() {
-          return $scope.map.bounds;
-        }, function(nv, ov) {
-          // Only need to regenerate once
-          if (!ov.southwest && nv.southwest) {
-            var markers = [];
-            markers.push(createRandomMarker(1, $scope.map.bounds))
-            $scope.markers = markers;
-          }
-        }, true);
-        
+        $scope.$apply(function(){
+          pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          
+          $scope.map = { 
+              center: { 
+                  latitude: pos.lat, 
+                  longitude: pos.lng 
+              },
+              zoom: 15,
+              bounds: {}
+          };
+        });
       }, function() {
         //handleLocationError(true, infoWindow, pos);
       });
@@ -57,11 +45,35 @@ angular.module('MDC')
       // Browser doesn't support Geolocation
     }
     
-    var createRandomMarker = function(i, bounds, idKey) {
-      var lat_min = bounds.southwest.latitude,
-      lat_range = bounds.northeast.latitude - lat_min,
-      lng_min = bounds.southwest.longitude,
-      lng_range = bounds.northeast.longitude - lng_min;
+    $scope.markers = [];
+    // Get the bounds from the map once it's loaded
+    $scope.$watch(function() {
+      return $scope.map.bounds;
+    }, function(nv, ov) {
+      // Only need to regenerate once
+      if (!ov.southwest && nv.southwest) {
+        var markers = [];
+        // Marker for user
+        markers.push(createUserMarker(0, $scope.map.bounds));
+        var serviceData = {
+          northeast : $scope.map.bounds.northeast,
+          southwest : $scope.map.bounds.southwest
+        };
+        MapsService.consultorios(serviceData).then(function(res){
+          console.log("Mensaje: " + res.data.Message);
+          if (res.data.Message == 'OK') {
+            for(var x in res.data.Results){
+              markers.push(createMarker(res.data.Results[x],x,$scope.map.bounds));
+            }
+          } 
+        }, function(res){
+              
+        })
+        $scope.markers = markers;
+      }
+    }, true);
+    
+    var createUserMarker = function(i, bounds, idKey) {
 
       if (idKey == null) {
         idKey = "id";
@@ -76,6 +88,25 @@ angular.module('MDC')
       };
       ret[idKey] = i;
       return ret;
+    };
+    
+    var createMarker = function(position, i, bounds, idKey) {
+
+      if (idKey == null) {
+        idKey = "id";
+      }
+
+      var latitude = position.Latitude;
+      var longitude = position.Longitude;
+      var ret = {
+        latitude: latitude,
+        longitude: longitude,
+        title: position.Name
+      };
+      
+      ret[idKey] = i;
+      return ret;
+      
     };
   
     $scope.login = function() {
