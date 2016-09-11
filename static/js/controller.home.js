@@ -167,7 +167,7 @@ angular.module('MDC')
       if(pins == 'consultorios'){
         iconPath = 'img/consultorioPin.png';
       } else {
-        iconPath = 'https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle_blue.png';
+        iconPath = 'img/farmaciaPin.png';
       }
       var ret = {
         latitude: latitude,
