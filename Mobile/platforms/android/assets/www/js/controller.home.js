@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('MDC')
-  .controller('HomeCtrl', ['$scope', '$location', '$localStorage', '$mdSidenav', '$mdDialog', 'MapsService', function($scope, $location, $localStorage, $mdSidenav, $mdDialog, MapsService) {	
+  .controller('HomeCtrl', ['$scope', '$http', '$location', '$localStorage', '$mdSidenav', '$mdDialog', 'MapsService', 'LoginService', function($scope, $http, $location, $localStorage, $mdSidenav, $mdDialog, MapsService, LoginService) {	
     
     var pins = 'consultorios';
     
@@ -193,17 +193,29 @@ angular.module('MDC')
     };
 
     $scope.signOut = function() {
-      $localStorage.token = null;
-      var url = "/home";
-      $location.path(url);
+      //$localStorage.token = null;
+      //var url = "/home";
+      //$location.path(url);
+      var data = LoginService.logout().then(function(res) {
+        window.location.href="/";
+      }, function(res) {
+        console.log(res);
+      });
     };
   
     // -----------------------------------------------
     // Logged User
     // -----------------------------------------------
 
-    $scope.isLoggedUser = $localStorage.token != null && $localStorage.token != undefined;
-    $scope.userName = $localStorage.userName; 
+    $scope.isLoggedUser = false;
+    $scope.currentUser = { email: '' };
+
+    var data = LoginService.getCurrentUser().then(function(res) {
+        $scope.isLoggedUser = res.data.UserEmail != null && res.data.UserEmail != undefined && res.data.UserEmail != '';
+        $scope.currentUser.email = res.data.UserEmail;
+    }, function(res) {
+        console.log(res);
+    });
 
     $scope.goHome = function(){
       var url = "/";
