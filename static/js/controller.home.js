@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('MDC')
-  .controller('HomeCtrl', ['$scope', '$location', '$localStorage', '$mdSidenav', 'MapsService', function($scope, $location, $localStorage, $mdSidenav, MapsService) {	
+  .controller('HomeCtrl', ['$scope', '$location', '$localStorage', '$mdSidenav', '$mdDialog', 'MapsService', function($scope, $location, $localStorage, $mdSidenav, $mdDialog, MapsService) {	
     
     var pins = 'consultorios';
     
@@ -56,8 +56,37 @@ angular.module('MDC')
     }
     
     $scope.onClick = function(marker, eventName, model) {
-      console.log("Clicked!" + marker);
-      //model.show = !model.show;
+      console.log("Clicked!" + marker.key);   
+      if(marker.key != 'u1'){
+        var title;
+        if(pins = 'consultorios'){
+          title = 'Consultorio';
+        } else {
+          title = 'Farmacia';
+        }
+        
+        var serviceData = { userId: marker.key};
+        
+        MapsService.userInfo(serviceData).then(function(res){
+          console.log("Mensaje: " + res.data.Message);
+          if (res.data.Message == 'OK') {
+            $mdDialog.show(
+              $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#map_canvas')))
+                .clickOutsideToClose(true)
+                .title(title)
+                .textContent( 'Nombre: ' + res.data.Results[0].Name + ', ' +
+                              'Correo: ' + res.data.Results[0].Email)
+                .ariaLabel('Informacion')
+                .ok('Entendido')
+                .targetEvent(eventName)
+            );
+          } 
+        }, function(res){
+                
+        });
+
+      }
     };
     
     $scope.markers = [];
