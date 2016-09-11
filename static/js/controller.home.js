@@ -204,7 +204,7 @@ angular.module('MDC')
     };
     
     $scope.goHistory = function() {
-      var url = "/history";
+      var url = "/#/history";
       window.location.href=url;
     };
     // -----------------------------------------------
