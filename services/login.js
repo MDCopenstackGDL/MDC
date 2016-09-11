@@ -10,17 +10,17 @@ REST_ROUTER.prototype.handleRoutes = function(router, pool, md5) {
   router.post('/login', function(req, res) {
     console.log('[SERVICE] - login ');
     var email = req.body.email;
-    var pass = req.body.pass;
+    var pass = req.body.password;
     var query = "SELECT * FROM " +
                 "  User u " +
                 "WHERE " +
                 "  (u.Email = ? " + 
                 "AND " +
-                "  u.Password >= ?) ";
+                "  u.Password = ?) ";
     
     var user = [email, pass];
     var query = mysql.format(query, user);
-    
+
     pool.getConnection(function(err, connection){
       if(err) {
         console.error(err);
@@ -46,7 +46,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, pool, md5) {
         res.json({
           "Error": false,
           "Message": "OK",
-          "Results": result
+          "User": result
         });
       })
     });
