@@ -202,7 +202,11 @@ angular.module('MDC')
         console.log(res);
       });
     };
-  
+    
+    $scope.goHistory = function() {
+      var url = "/history";
+      $location.path(url);
+    };
     // -----------------------------------------------
     // Logged User
     // -----------------------------------------------
