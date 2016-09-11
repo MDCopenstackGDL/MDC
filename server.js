@@ -7,6 +7,7 @@ var md5 = require('MD5');
 var app = express();
 var morgan = require('morgan');
 var consultorio = require('./services/consultorio.js');
+var registro = require('./services/registro.js');
 var listen_port = process.env.PORT || 3000;
 var dev = process.env.DEV;
 
@@ -47,6 +48,7 @@ REST.prototype.configureExpress = function(pool) {
   app.use(morgan("dev"));
   app.use(express.static("./static"));
   var consultorio_router = new consultorio(router, pool, md5);
+  var registro_router = new registro(router, pool, md5)
   self.startServer();
 }
 REST.prototype.startServer = function() {
