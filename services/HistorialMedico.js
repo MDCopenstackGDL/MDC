@@ -7,23 +7,16 @@ function REST_ROUTER(router, pool, md5) {
 
 REST_ROUTER.prototype.handleRoutes = function(router, pool, md5) {
   
-  router.get('/getConsultorios/:nelat/:nelng/:swlat/:swlng', function(req, res) {
-    console.log('[SERVICE] - Get consultorios. ');
-    var northeastlat = req.params.nelat;
-    var northeastlng = req.params.nelng;
-    var southwestlat = req.params.swlat;
-    var southwestlng = req.params.swlng;
-    var idConsultorios = 4;
-    var query = 'SELECT loc.Latitude, loc.Longitude, us.Name, us.idUser FROM ' +
+  router.post('/saveMedicalHistory/:nelat/:nelng/:swlat/:swlng', function(req, res) {
+    console.log('[SERVICE] - Save Medical History. ');
+    var answers = req.body.answers;
+    var comments = req.body.comments;
+    var query = 'INSERT INTO mdc.MedicalHistory ' +
                 '  Location loc ' +
                 'JOIN ' +
                 '  User us ' +
                 'ON ' +
                 '  us.idUser = loc.idUser ' +
-                'JOIN ' +
-                '  RoleUser ru ' +
-                'ON ' +
-                '  us.idUser = ru.idUser ' +
                 'WHERE ' +
                 '  (loc.Latitude <= ? ' + //north
                 'AND ' +
@@ -31,14 +24,10 @@ REST_ROUTER.prototype.handleRoutes = function(router, pool, md5) {
                 'AND ' +
                 '  (loc.Longitude <= ? ' + //north
                 'AND ' +
-                '  loc.Longitude >= ?) ' //south
-                'AND ' +
-                '  ru.idRoles = ?';
+                '  loc.Longitude >= ?)'; //south
     
-    var coords = [northeastlat, southwestlat, northeastlng, southwestlng,idConsultorios];
+    var coords = [northeastlat, southwestlat, northeastlng, southwestlng];
     var query = mysql.format(query, coords);
-    
-    console.log(query);
     
     pool.getConnection(function(err, connection){
       if(err) {
