@@ -8,6 +8,8 @@ var app = express();
 var morgan = require('morgan');
 var consultorio = require('./services/consultorio.js');
 var registro = require('./services/registro.js');
+var farmacia = require('./services/farmacia.js');
+var login = require('./services/login.js');
 var listen_port = process.env.PORT || 3000;
 var dev = process.env.DEV;
 
@@ -48,11 +50,11 @@ REST.prototype.configureExpress = function(pool) {
   app.use(morgan("dev"));
   app.use(express.static("./static"));
   var consultorio_router = new consultorio(router, pool, md5);
-<<<<<<< HEAD
   var registro_router = new registro(router, pool, md5);
-=======
-  var registro_router = new registro(router, pool, md5)
->>>>>>> ad0cf5b41bb2f447ae919e98d2dfcb49a6c13011
+  var login_router = new login(router, pool, md5);
+  var farmacia_router = new farmacia(router, pool, md5);
+
+>>>>>>> d727b923fef8e5f99936a0907d66e9667c6d1836
   self.startServer();
 }
 REST.prototype.startServer = function() {
