@@ -18,7 +18,7 @@
   <div>
   
     <div ng-controller='HomeCtrl'>
-      <header  ng-show="isLoggedUser">
+      <header ng-show="isLoggedUser">
         <md-toolbar md-scroll-shrink="" class="md-hue-1">
           <div class="md-toolbar-tools">
             <md-button class="md-icon-button" aria-label="Settings" ng-click="toggleLeft()" ng-hide="isOpenLeft()">
@@ -38,7 +38,7 @@
         </md-toolbar>
         <md-content layout-padding>
           <md-list ng-cloak>
-            <md-subheader class="md-no-sticky">Hola {{userName}}!</md-subheader>
+            <md-subheader class="md-no-sticky">Hola {{currentUser.email}}!</md-subheader>
             <md-list-item>
               <p><md-icon md-font-set="material-icons"> account_circle </md-icon> Mi Perfil</p>
             </md-list-item>
