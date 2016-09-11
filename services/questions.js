@@ -15,7 +15,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, pool, md5) {
                   " FROM Answer AS ANS " +
                   " INNER JOIN MedicalHistory AS M " +
                   " ON ANS.idMedicalHistory = M.idMedicalHistory " +
-                  " WHERE (M.idUser = 8) " +
+                  " WHERE (M.idUser = ?) " +
                 " ) AS A " +
                 " ON Q.idQuestion = A.idQuestion " +
                 " ORDER BY Q.idQuestion";
