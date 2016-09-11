@@ -53,8 +53,6 @@ REST.prototype.configureExpress = function(pool) {
   var registro_router = new registro(router, pool, md5);
   var login_router = new login(router, pool, md5);
   var farmacia_router = new farmacia(router, pool, md5);
-
->>>>>>> d727b923fef8e5f99936a0907d66e9667c6d1836
   self.startServer();
 }
 REST.prototype.startServer = function() {
