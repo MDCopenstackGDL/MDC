@@ -1,0 +1,27 @@
+<div ng-controller='HistoryCtrl' layout="column" layout-padding ng-cloak>
+
+  <md-content class="md-no-momentum">
+
+    <span class="md-title">Historial Médico</span>
+    <br />
+    <br />
+    <label>Antecedentes heredofamiliares</label>
+    <br />
+    <!--label>Antecedentes Heredo Familiares</label-->
+    <md-input-container class="md-icon-float md-block" ng-repeat="ans in history.answers">
+      <!-- Use floating label instead of placeholder -->
+      <label>{{ans.question}}</label>
+      <md-icon md-font-set="material-icons"> keyboard_arrow_right </md-icon>
+      <input ng-model="ans.answer" type="text" ng-required="true">
+    </md-input-container>    
+
+    <md-input-container class="md-icon-float md-block">
+      <!-- Use floating label instead of placeholder -->
+      <label>Comentarios</label>
+      <md-icon md-font-set="material-icons"> keyboard_arrow_right </md-icon>
+      <input ng-model="history.comments" type="text" ng-required="false">
+    </md-input-container>
+
+  </md-content>
+  
+</div>
