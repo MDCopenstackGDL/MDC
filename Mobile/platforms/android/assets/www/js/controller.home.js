@@ -205,7 +205,7 @@ angular.module('MDC')
     
     $scope.goHistory = function() {
       var url = "/history";
-      $location.path(url);
+      window.location.href=url;
     };
     // -----------------------------------------------
     // Logged User
