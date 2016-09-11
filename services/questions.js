@@ -19,7 +19,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, pool, md5) {
                 " ) AS A " +
                 " ON Q.idQuestion = A.idQuestion " +
                 " ORDER BY Q.idQuestion";
-    var user = [_session.userEmail];
+    var user = [_session.userId];
     var query = mysql.format(query, user);
 
     pool.getConnection(function(err, connection){
