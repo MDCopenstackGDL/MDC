@@ -136,16 +136,16 @@ angular.module('MDC')
       var longitude = position.Longitude;
       var iconPath;
       if(pins == 'consultorios'){
-        iconPath = 'img/consultioPin.png';
+        iconPath = 'img/consultorioPin.png';
       } else {
-        iconPath = 'img/farmaciaPin.png';
+        iconPath = 'https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle_blue.png';
       }
       var ret = {
         latitude: latitude,
         longitude: longitude,
         title: position.Name,
-        show: true
-        //icon: iconPath
+        show: true,
+        icon: iconPath
       };
       
       ret[idKey] = i;
