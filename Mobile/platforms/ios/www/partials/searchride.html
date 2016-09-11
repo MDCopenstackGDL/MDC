@@ -1,0 +1,50 @@
+<form class="form form--pad-none" ng-controller="SearchRideCtrl" ng-submit="SearchRideInfo(Site, Stop, Date, Time, Going, Hours)">
+  <div class="box__container header__container" >
+  <br/>
+    <header class="box box--direction-column box--align-center box--pad-small header header--large">Search ride</header>
+  </div>
+  <div class="form-fields">
+    <fieldset>
+      <div class="form-field">
+        <span class="form-field__contents" >
+          <select class="form-control" ng-model="Site" required>
+            <option value="" disabled selected>Site</option>
+            <option ng-repeat="site in sites.Sites" value="{{site.idSite}}">{{site.Name}}</option>
+          </select>
+        </span>
+      </div>
+      <div class="form-field form-field--text">
+        <span class="form-field__contents" >
+          <input id="{Stop}" type="text" placeholder="Stop" ng-model="Stop" required>
+        </span>
+      </div>
+      <div class="form-field">
+          <input id="{Date}" type="date" ng-model="Date" required>
+          <input id="{Time}" type="time" ng-model="Time" required>
+      </div>
+      <div class="form-field">
+          <input id="{Hours}" type="number" min="0" placeholder="Tolerance hours" ng-model="Hours" required>
+          <input type="checkbox" ng-model="Going"> Going to site?
+      </div>
+    </fieldset>
+  </div>
+  <nav class="box box--direction-column box--responsive box--pad-none menu menu--column menu--inline">
+    <button type="submit" class="button button--primary">Search</button>
+  </nav><br><br>
+  <h3 style="text-align: center; margin: 0px;">Available rides</h3>
+  <hr style=" border: 0px; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))">
+  <nav>
+    <ul style="height:150px; overflow:hidden; overflow-y:scroll;">
+      <li ng-hide="results.Rides.lenght" ng-repeat="result in results.Rides">
+        <h4 style="margin: 1px;">{{result.keyword}}</h4>
+        <p style="margin: 1px;"><strong>Fecha:</strong> {{result.TravelDate | date:'dd/MM/yyyy'}} <strong>Hora:</strong> {{result.TravelDate | date:'HH:mm'}} &nbsp;&nbsp;<button type="submit" class="button button--primary" ng-click="request(result)">Request</button></p>
+      </li>
+      <li ng-show="results.Message != 'OK'">
+        <p style="text-align: center;"><strong>{{results.Message}}</p></strong>
+      </li> 
+      <li ng-show="ride.Message == 'OK'">
+        <p style="text-align: center;"><strong>{{ride}}</p></strong>
+      </li> 
+    </ul>
+  </nav>
+</form>

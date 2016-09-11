@@ -1,0 +1,70 @@
+.hpe-logo-header{
+  width: 119;
+  height: 50px;
+  display: block;
+  vertical-align: middle;
+  border: 0;
+  margin-top: 13px;
+  margin-left: 15px;
+  margin-right: 13px;
+}
+
+.md-toolbar-tools{
+  color: #FFFFFF;
+}
+
+.mdi::before {
+  font-size: 24px;
+  color: #FFFFFF;
+}
+
+.main-footer{
+  background: #F0F0F0;
+  position:relative;
+  bottom:0;
+  left:0;
+  right:0;
+}
+
+.info-wrapper {
+  margin-left: 15px;
+  margin-right: 13px;
+}
+
+footer .text-main-footer {
+  font-family: 'Metric Regular';
+  font-size: 12px;
+}
+
+form {
+	width: 380px;
+	margin: 4em auto;
+	padding: 3em 2em 2em 2em;
+	background: #FFFFFF;
+	border: 1px solid #ebebeb;
+	box-shadow: rgba(0,0,0,0.14902) 0px 1px 1px 0px,rgba(0,0,0,0.09804) 0px 1px 2px 0px;
+}
+
+.buttondemoBasicUsage section {
+  background: #f7f7f7;
+  border-radius: 3px;
+  text-align: center;
+  margin: 1em;
+  position: relative !important;
+  padding-bottom: 10px; 
+}
+
+.buttondemoBasicUsage md-content {
+  margin-right: 7px; 
+}
+
+.buttondemoBasicUsage section .md-button {
+  margin-top: 16px;
+  margin-bottom: 16px; }
+
+.buttondemoBasicUsage .label {
+  position: absolute;
+  bottom: 5px;
+  left: 7px;
+  font-size: 14px;
+  opacity: 0.54; }

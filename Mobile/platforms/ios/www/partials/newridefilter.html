@@ -1,0 +1,50 @@
+<form class="hpeForm" >
+  <fieldset>
+    <div id="legend">
+      <legend class="">Filter</legend>
+    </div>
+    
+    <div class="form-group select-group c2">
+      <label for="c2s">Municipality selection.</label>
+      <div class="select-wrapper icon-arrow-bottom">
+        <select name="c2s" id="c2s" ng-model="municipality" 
+                                    ng-options="municipality.Municipio for municipality in municipalities"
+                                    ng-change="updateSuburbs()">
+          <option value=""></option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="form-group select-group c2">
+      <label for="c2s">Suburb selection.</label>
+      <div class="select-wrapper icon-arrow-bottom">
+        <select name="c2s" id="c2s" ng-model="suburb" 
+                                    ng-options="suburb.Suburb for suburb in suburbs"
+                                    ng-init="initSuburbs()">
+          <option value=""></option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      Description
+      <div class="row">
+        <div class='col-sm-6'>
+          <div class="form-group">
+            <div class='input-group'>
+              <input type='text' class="form-control" ng-model="description" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <!-- Button -->
+      <div class="controls">
+        <button class="btn btn-success btn-large" ng-click="saveStop()">Guardar parada</button>
+      </div>
+    </div>
+    
+  </fieldset>
+</form>

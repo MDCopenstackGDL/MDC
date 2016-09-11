@@ -1,0 +1,56 @@
+<div ng-controller='SignUpCtrl' layout="column" layout-padding ng-cloak>
+
+  <md-content class="md-no-momentum">
+
+    <span class="md-title">Registro</span>
+    <br />
+    <br />
+    <md-input-container class="md-icon-float md-block">
+      <!-- Use floating label instead of placeholder -->
+      <label>Nombe</label>
+      <md-icon md-font-set="material-icons"> person </md-icon>
+      <input ng-model="user.name" type="text" ng-required="true">
+    </md-input-container>
+
+    <md-input-container class="md-block">
+      <!-- Use floating placeholder instead of label -->
+      <label>Correo Electrónico</label>
+      <md-icon md-font-set="material-icons"> email </md-icon>
+      <input ng-model="user.email" type="email" ng-required="true">
+    </md-input-container>
+
+    <md-input-container class="md-block">
+      <!-- Use floating placeholder instead of label -->
+      <label>Contraseña</label>
+      <md-icon md-font-set="material-icons"> lock </md-icon>
+      <input ng-model="user.password" type="password" ng-required="true">
+    </md-input-container>
+
+    <md-input-container class="md-block">
+      <md-radio-group ng-model="user.gender">
+        <md-radio-button value="M"> Masculino </md-radio-button>
+        <md-radio-button value="F"> Femenino </md-radio-button>
+      </md-radio-group>
+    </md-input-container>
+
+    <md-switch ng-model="user.isDoctor" aria-label="Switch 1">
+      Soy Doctor
+    </md-switch>
+
+    <div ng-show="user.isDoctor">
+      <md-input-container class="md-icon-float md-block">
+        <!-- Use floating label instead of placeholder -->
+        <label>Cédula Profesional</label>
+        <md-icon md-font-set="material-icons"> school </md-icon>
+        <input ng-model="user.cedula" type="text" ng-required="true">
+      </md-input-container>
+    </div>
+
+    <!--<md-datepicker ng-model="user.birthday" md-placeholder="Fecha de Nacimiento"></md-datepicker>-->
+    <div class="bottom-sheet-demo inset" layout="row" layout-sm="column" layout-align="center" >
+        <md-button flex="100" class="md-raised md-primary" ng-click="signUp()">Registrarse</md-button>
+    </div>
+
+  </md-content>
+  
+</div>

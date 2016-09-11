@@ -1,0 +1,175 @@
+<section>
+  <md-card>
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">User</span>
+        <span class="md-subhead">Below you can find your information</span>
+      </md-card-title-text>
+    </md-card-title>
+    <md-divider></md-divider>
+    <md-card-content layout="row" layout-align="space-between">
+      <div class="md-media-xl card-media">
+        <img src="img/user.png" alt="Car" height="90%"></img>
+      </div>
+      <div class="info-wrapper">
+        <p><strong>Name:</strong> <span id="name" ng-model="name">{{name}}</span></p>
+        <p><strong>Email:</strong> <span id="email" ng-model="email">{{email}}</span></p>
+        <p><strong>Phone:</strong> <span id="phone" ng-model="phone">{{phone}}</span></p>
+      </div>
+
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button class="md-primary" ng-click="changeView('myinfoedit')">
+          Edit
+        </md-button>
+      </md-card-actions>
+    </md-card-content>
+  </md-card>
+
+  <md-card>
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">Garage</span>
+        <span class="md-subhead">This is your parking garage</span>
+      </md-card-title-text>
+    </md-card-title>
+    <md-divider></md-divider>
+    <md-card-content layout="row" layout-align="space-between">
+      <div class="md-media-xl card-media">
+        <img src="img/garage-large.jpg" alt="Garage" height="90%"></img>
+      </div>
+      <div class="info-wrapper">
+        <accordion close-others="status.oneAtATime ">
+          <accordion-group ng-repeat="car in vehicles" class="tile-cta  text-uppercase btn-secondary" role="button">
+            <br>
+            <accordion-heading>
+              <span>{{car.Brand + ' , ' + car.Model}}</span>
+                 <md-menu>
+                  <md-button aria-label="Open car actions" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
+                    <md-icon md-svg-icon="img/icons/menu-three-dots.svg"></md-icon>
+                  </md-button>
+                  <md-menu-content width="4">
+                    <md-menu-item>
+                      <md-button ng-click="">
+                        <md-icon md-svg-icon="img/icons/plus.svg"></md-icon>
+                        Add
+                      </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                      <md-button ng-click="">
+                        <md-icon md-svg-icon="img/icons/edit.svg"></md-icon>
+                        Edit
+                      </md-button>
+                    </md-menu-item>
+                    <md-menu-divider></md-menu-divider>
+                    <md-menu-item>
+                      <md-button ng-click="">
+                        <md-icon md-svg-icon="img/icons/delete.svg"></md-icon>
+                        Delete
+                      </md-button>
+                    </md-menu-item>
+                  </md-menu-content>
+                </md-menu>
+               
+            </accordion-heading>
+            <div class="row">
+              <div class="col-sm-12">
+                Model: {{car.Model}}
+                <br>Brand: {{car.Brand}}</br>
+              </div>
+            </div>
+          </accordion-group>
+          </br>
+        </accordion>
+      </div>
+
+    </md-card-content>
+  </md-card>
+</section>
+
+
+<!--<article class="box box--direction-column box--responsive box--pad-none article" ng-controller="MyInfoCtrl">
+ 	<div class="parbase columnContainerComponent section">
+	<div class="columns-component column-content-1 style-bg-white-3" style="padding-bottom: 30px;padding-top: 60px;">
+	<div class="container-fluid container-gutter">
+	<div class="hpe-text-only-wrapper ">
+	<div class="row">
+            <div class="col-md-12">
+                <div class="hybrid-router-header text-center center-block body-copy-large">
+                    <h2>My Information</h2>
+                    <p>Below you can find your Information </p>
+                </div>
+            </div>
+    </div> 
+  <section class="box box--direction-column box--responsive box--pad-vertical-medium section">
+
+	<p>
+      Name: <span id="name" ng-model="name">{{name}}</span>
+    </p>
+    <p>
+      Email: <span id="email" ng-model="email">{{email}}</span>
+    </p>
+    <p>
+      Phone: <span id="phone" ng-model="phone">{{phone}}</span>
+    </p>
+    <button type="button" class="button button--primary" ng-click="changeView('myinfoedit')">Edit</button>
+  </section>
+  </div>
+  </div>
+  </div>
+  </div>
+	<div class="parbase horizontalGrayRuleLineComponent section">
+		<div class="hpe-rule-hz style-bg-white">
+			<div class="container-fluid container-gutter">
+					<div class="hpe-rule"></div>
+			</div>
+		</div>
+	</div>
+	<div class="columns-component column-content-12 style-bg-gray-3" style="padding-bottom: 30px;padding-top: 60px;">
+	<div class="container-fluid container-gutter">
+	<div class="hpe-text-only-wrapper  ">
+ 	<div class="row">
+            <div class="col-md-12">
+                <div class="hybrid-router-header text-center center-block body-copy-large">
+                    <h2>Garage</h2>
+                    <p>Welcome to your parking garage </p>
+                </div>
+            </div>
+    </div> 
+	<div class="row">
+		<div class="col-xs-12 ">
+		<accordion close-others="status.oneAtATime " >
+			<accordion-group ng-repeat="car in vehicles" class="tile-cta  text-uppercase btn-secondary" role="button" >
+			<br>
+			<accordion-heading>
+			<span>{{car.Brand + ' , ' + car.Model}}</span>
+				<div class="pull-left fa fa-plus  "></div>
+				<div ng-click="$event.stopPropagation();" class="pull-right btn-group btn-group-md " dropdown >
+					<button type="button" class="dropdown-toggle " >
+						<span class="fa fa-ellipsis-v"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu" >
+						<li><a href="#">Add</a>
+						</li>
+						<li><a href="#">Edit</a>
+						</li>
+						<li><a href="#">Delete</a>
+						</li>
+					</ul>
+			</div>
+			</accordion-heading>
+			<div class="row">
+				<div class="col-sm-12">
+				Model: {{car.Model}}
+				<br>Brand: {{car.Brand}}</br>
+				</div>
+			</div>
+			</accordion-group>
+			</br>
+		</accordion>
+		</div>
+	</div>
+	</div>
+	</div>
+	</div>  
+</article>
+-->

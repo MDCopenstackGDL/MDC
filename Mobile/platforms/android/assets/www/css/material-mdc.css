@@ -1,0 +1,36 @@
+.md-toolbar-tools{
+  color: #FFFFFF;
+}
+
+.form-header {
+  padding: 0px;
+}
+
+.button-wide{
+  width: 50%;
+}
+
+.md-whiteframe-form {
+  width: 80%;
+}
+
+.container{
+  margin-top: 10px;
+}
+
+.mdi::before {
+  font-size: 24px;
+  color: #FFFFFF;
+}
+
+html, body, #map_canvas {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+}
+
+.angular-google-map-container { height: 400px; }
+
+.material-icons {
+  color: #AAA;
+}

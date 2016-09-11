@@ -13,7 +13,7 @@ REST_ROUTER.prototype.handleRoutes = function(router, pool, md5) {
     var northeastlng = req.params.nelng;
     var southwestlat = req.params.swlat;
     var southwestlng = req.params.swlng;
-    var query = 'SELECT loc.Latitude, loc.Longitude, us.Name FROM ' +
+    var query = 'SELECT loc.Latitude, loc.Longitude, us.Name, us.idUser FROM ' +
                 '  Location loc ' +
                 'JOIN ' +
                 '  User us ' +
@@ -30,6 +30,8 @@ REST_ROUTER.prototype.handleRoutes = function(router, pool, md5) {
     
     var coords = [northeastlat, southwestlat, northeastlng, southwestlng];
     var query = mysql.format(query, coords);
+    
+    console.log(query);
     
     pool.getConnection(function(err, connection){
       if(err) {
