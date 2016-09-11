@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MDC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="img/favicon.ico">
+  <!-- Material design CSS for angular -->
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+  <link href="css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="css/material-mdc.css">
+</head>
+
+<body ng-app="MDC" ng-cloak="">
+  
+  <div>
+  
+    <div ng-controller='HomeCtrl'>
+      <header  ng-show="isLoggedUser">
+        <md-toolbar md-scroll-shrink="" class="md-hue-1">
+          <div class="md-toolbar-tools">
+            <md-button class="md-icon-button" aria-label="Settings" ng-click="toggleLeft()" ng-hide="isOpenLeft()">
+              <i class="mdi mdi-menu"></i>
+            </md-button>
+            <span ng-click="goHome()">MDC</span>
+            <!--<md-button class="md-icon-button" aria-label="More">
+              <i class="mdi mdi-dots-vertical"></i>
+            </md-button>-->
+          </div>
+        </md-toolbar>
+      </header>
+
+      <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="left">
+        <md-toolbar class="md-theme-light">
+          <h1 class="md-toolbar-tools">Bienvenido!</h1>
+        </md-toolbar>
+        <md-content layout-padding>
+          <md-list ng-cloak>
+            <md-subheader class="md-no-sticky">Hola {{userName}}!</md-subheader>
+            <md-list-item>
+              <p><md-icon md-font-set="material-icons"> account_circle </md-icon> Mi Perfil</p>
+            </md-list-item>
+            <md-list-item>
+              <p><md-icon md-font-set="material-icons"> local_hospital </md-icon> Historial Clínico </p>
+            </md-list-item>
+            <md-list-item>
+              <p ng-click="signOut()"><md-icon md-font-set="material-icons"> power_settings_new </md-icon> Cerrar Sesión </p>
+            </md-list-item>
+            <md-divider></md-divider>
+          </md-list>
+        </md-content>
+      </md-sidenav>
+    </div>
+
+    <main>
+      <div class="container" ng-view="">
+      </div>
+    </main>
+    
+  </div>
+ 
+  <script src="js/lodash.min.js"></script>
+  
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+  
+  <script src="lib/ngStorage.js"></script>
+  
+  <script src="js/angular-simple-logger.js"></script>  
+  <script src="js/angular-google-maps.js"></script>
+  
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript">
+    app.initialize();
+  </script>
+  
+  <script src="js/app.js"></script>
+  <script src="js/constant.js"></script>
+  <script src="js/controller.home.js"></script>
+  <script src="js/controller.login.js"></script>
+  <script src="js/controller.signup.js"></script>
+  <script src="js/service.home.js"></script>
+  <script src="js/service.login.js"></script>
+  <script src="js/service.signup.js"></script>
+
+</body>
+
+</html>

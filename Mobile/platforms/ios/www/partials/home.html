@@ -1,0 +1,30 @@
+<section>
+  <md-subheader class="md-primary">{{messageHome}}</md-subheader>
+  <md-card>
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">Welcome to Get a Ride!</span>
+        <span class="md-subhead">The easy way to get a ride for an HPE employee!</span>
+      </md-card-title-text>
+    </md-card-title>
+    <md-divider></md-divider>
+    <md-card-content layout="row" layout-align="space-between">
+      <div class="md-media-xl card-media">
+        <img src="img/car-large.jpg" alt="Car" height="60%"></img>
+      </div>
+      <md-card-actions layout="column">
+        <md-button md-no-ink="" class="md-primary" ng-click="changeView('login')">
+          <md-icon md-svg-icon="img/icons/account.svg"></md-icon>
+          Login
+        </md-button>
+        <md-button md-no-ink="" class="md-primary" ng-click="changeView('register')">
+          <md-icon md-svg-icon="img/icons/account-plus.svg"></md-icon>
+          Sign up
+        </md-button>
+      </md-card-actions>
+    </md-card-content>
+  </md-card>
+</section>
+
+
+

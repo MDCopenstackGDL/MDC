@@ -31,6 +31,8 @@ REST_ROUTER.prototype.handleRoutes = function(router, pool, md5) {
     var coords = [northeastlat, southwestlat, northeastlng, southwestlng];
     var query = mysql.format(query, coords);
     
+    console.log(query);
+    
     pool.getConnection(function(err, connection){
       if(err) {
         console.error(err);

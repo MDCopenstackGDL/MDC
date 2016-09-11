@@ -1,0 +1,28 @@
+<article class="box box--direction-column box--responsive box--pad-none article" ng-controller="MyRideWeekCtrl" >
+  <div class="box__container header__container">
+    <header class="box box--direction-column box--align-center box--pad-small header header--large">My Rides</header>
+  </div>
+  <section class="box box--direction-column box--responsive box--pad-vertical-medium section">
+    <p>
+      Rides to go  <i class="fa fa-plus-square-o"> </i>
+    </p>
+    <p>
+    <div class="col-md-12">
+    <table class="table table-bordered">
+      <tr  >
+        <th></th>
+        <th ng-repeat="day in days">{{day}}</th>
+      </tr>
+    <tr ng-repeat="(hr,hour) in hours" >
+        <td >{{hour}}</td>
+        <td ng-repeat="(day,ride) in rideWeek" ><div class="{{colorStatus[ride[hr].TravelStatus]}}" >{{ride[hr].idRide}}</div></td>
+    </tr>
+    </table>
+    </div >
+    </p>
+    
+    <p>
+    <button type="button" class="button button--primary" ng-click="changeView('myinformationvehicleedit')">Edit</button>
+    </p>
+  </section>
+</article>

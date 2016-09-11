@@ -1,0 +1,42 @@
+<form class="form form--pad-none" ng-controller="MyInformationCtrl" ng-submit="updateVehicleInformation()">
+  <div class="box__container header__container" >
+    <header class="box box--direction-column box--align-center box--pad-small header header--large">My information</header>
+  </div>
+  <div class="form-fields">
+    <fieldset>
+      <div class="form-field form-field--text">
+        <label class="form-field__label" for="Brand">Brand</label>
+        <span class="form-field__contents" >
+          <input id="{Brand}" type="text" ng-model="Brand">
+        </span>
+      </div>
+      <div class="form-field form-field--text">
+        <label class="form-field__label" for="SubBrand">Sub Brand</label>
+        <span class="form-field__contents" >
+          <input id="{SubBrand}" type="text" ng-model="SubBrand">
+        </span>
+      </div>
+      <div class="form-field form-field--text">
+        <label class="form-field__label" for="Model">Model</label>
+        <span class="form-field__contents">
+          <input id="{Model}" type="text" ng-model="Model">
+        </span>
+      </div>
+      <div class="form-field form-field--text">
+        <label class="form-field__label" for="Plate">License Plate</label>
+        <span class="form-field__contents">
+          <input id="{Plate}" type="text" ng-model="Plate">
+        </span>
+      </div>
+      <div class="form-field form-field--text">
+        <label class="form-field__label" for="Color">Color</label>
+        <span class="form-field__contents">
+          <input id="{Color}" type="text" ng-model="Color">
+        </span>
+      </div>
+    </fieldset>
+  </div>
+  <nav class="box box--direction-column box--responsive box--pad-none menu menu--column menu--inline">
+    <button type="submit" class="button button--primary">Save</button>
+  </nav>
+</form>

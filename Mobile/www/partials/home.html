@@ -1,0 +1,28 @@
+<section>
+  <md-card>
+      <div class="bottom-sheet-demo inset" layout="row" layout-sm="column" layout-align="center" >
+        <md-button flex="50" class="md-primary md-raised" ng-click="reloadMap('consultorios')">
+            Consultorio
+        </md-button>
+        <md-button flex="50" class="md-primary md-raised" ng-click="reloadMap('farmacias')">
+            Farmacia
+        </md-button>
+      </div>
+    <md-divider></md-divider>
+    <md-card-content layout="row" layout-align="space-between">
+      <div id="map_canvas" >
+        <ui-gmap-google-map center="map.center" zoom="map.zoom" bounds="map.bounds">
+          <ui-gmap-markers models="markers" coords="'self'" icon="'icon'" click="onClick">
+            <ui-gmap-windows show="show">
+                <div ng-non-bindable>{{title}}</div>
+            </ui-gmap-windows>
+          </ui-gmap-markers>
+        </ui-gmap-google-map>
+       </div>
+    </md-card-content>
+  </md-card>
+  <div class="bottom-sheet-demo inset" layout="column" layout-sm="column" layout-align="center" ng-show="!isLoggedUser">
+     <md-button flex="100" class="md-raised md-primary" ng-click="login()">Iniciar Sesión</md-button>
+     <md-button md-no-ink class="md-primary" ng-click="signUp()">Registrarse</md-button>
+  </div>
+</section>

@@ -1,0 +1,61 @@
+<article class="box box--direction-column box--responsive box--pad-none article" ng-controller="MyVehicleCtrl">
+
+<form class="hpeForm"  name="forminput">
+  <fieldset>
+    <div id="legend">
+      <legend class="">Add a New Vehicle</legend>
+    </div>
+
+    <div class="form-group">
+      <label for="brand">Brand</label>
+      <div class="controls">
+        <input type="text" id="brand" name="brand" placeholder="" ng-pattern="/^[a-zA-Z0-9]+$/" class="form-control input" ng-model="car.Brand"  required>
+		<span ng-show="forminput.brand.$error.pattern">Letters and numbers Only!</span>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="Subbrand">Sub Brand</label>
+      <div class="controls">
+        <input type="text" id="Subbrand" name="Subbrand" placeholder="" ng-pattern="/^[a-zA-Z0-9]+$/" class="form-control input" ng-model="car.Subbrand" required>
+		<span ng-show="forminput.Subbrand.$error.pattern">Letters and numbers Only!</span>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="model">Model</label>
+      <div class="controls">
+        <input type="text" id="model" name="model" placeholder="" ng-pattern="/^[0-9]{4,4}$/" class="form-control input" ng-model="car.Model" required>
+		<span ng-show="forminput.model.$error.pattern">Only four digit number!</span>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="plate">License Plate</label>
+      <div class="controls">
+        <input type="text" id="plate" name="plate" placeholder=""  ng-pattern="/^[a-zA-Z0-9]+$/"  class="form-control input" ng-model="car.Plates" required>
+		<span ng-show="forminput.plate.$error.pattern">Only Alphabetic letters!</span>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="AvailableSeats">Available Seats</label>
+      <div class="controls">
+        <input type="text" id="AvailableSeats" name="AvailableSeats" placeholder="" ng-pattern="/^[0-9]{0,1}$/" class="form-control input" ng-model="car.AvailableSeats" required>
+		<span ng-show="forminput.AvailableSeats.$error.pattern">Only one number!</span>
+      </div>
+    </div>
+	
+	<div class="form-group">
+      <label for="Description">Description</label>
+      <div class="controls">
+        <input type="text" id="Description" name="Description" placeholder="" ng-pattern="/^[a-zA-Z\s]+$/" class="form-control input" ng-model="car.Description" required>
+		<span ng-show="forminput.Description.$error.pattern">Only Alphabetic letters!</span>
+      </div>
+    </div> 
+    
+    <button class="btn btn-success btn-large" ng-disabled="forminput.$invalid" ng-click="updateVehicleInformation()">Save</button>
+
+  </fieldset>
+</form>
+</article>
