@@ -34,6 +34,10 @@ app.config(['$routeProvider', '$httpProvider', '$locationProvider', '$mdThemingP
       templateUrl: 'partials/signup.html',
       controller: 'SignUpCtrl'
     }).
+    when('/history', {
+      templateUrl: 'partials/history.html',
+      controller: 'HistoryCtrl'
+    }).
     otherwise({
       redirectTo: '/'
     });
