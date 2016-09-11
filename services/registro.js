@@ -7,14 +7,14 @@ function REST_ROUTER(router, pool, md5) {
 
 REST_ROUTER.prototype.handleRoutes = function(router, pool, md5) {
 
-  router.POST('/registro', function(req, res) {
+  router.post('/registro', function(req, res) {
     console.log('[SERVICE] - POST Users.');
 
     var NAME = req.body.name;
     var EMAIL = req.body.email;
     var PASS = req.body.password;
     var BIRTHDATE = req.body.birthday;
-    var CREATEDATE = Now();
+    var CREATEDATE = new Date().toISOString().slice(0, 10);
     var GENDER = req.body.gender;
     var STATUS = 1;
     var FACEBOOKID = 1;
